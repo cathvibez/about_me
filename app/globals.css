@@ -2,37 +2,38 @@
 
 /* =========================================================================
    TOKENS — the entire visual identity lives here.
-   A v2 redesign edits this block and (almost) nothing else.
-   Palette: Pacific Northwest.
-     Sound Water #1E4D5B · Pacific Mist #D0D7DE · Evergreen Pine #2C4C3E
-     Urban Slate #4A4E58 · Neon Sunset #FF6B4A
-   Dark-first: :root is the dark theme, light is the deliberate swap.
+   A redesign edits this block and (almost) nothing else.
+
+   Origami: a paper ground, creases rather than borders, and hierarchy built
+   from folded tonal steps instead of hue. Colour is nearly absent on purpose —
+   the one accent is a muted slate that reads as ink held to the light, so
+   nothing on the page competes with the writing.
+
+   Light-first: paper is the base state; dark is the deliberate swap.
    ========================================================================= */
 
 :root {
-  --ground: #1e4d5b;
-  --panel: #1a4653;
-  --panel-2: #163c47;
-  --rule: #3d7285;
-  --rule-soft: #2e6274;
+  --ground: #f2f2ef;      /* the sheet */
+  --panel: #fbfbf9;       /* a fold catching light */
+  --panel-2: #e7e7e3;     /* a fold in shadow */
+  --rule: #d9d9d4;        /* crease */
+  --rule-soft: #e6e6e2;   /* soft crease */
 
-  --ink: #eaf1f4;
-  --ink-2: #c4cfd6;
-  --ink-3: #a9b9c2;
+  --ink: #1d1e1e;
+  --ink-2: #4f5157;
+  --ink-3: #676a70;
 
-  /* Neon Sunset splits in two: pure coral for graphics, lifted for text.
-     #FF6B4A on #1E4D5B is 3.3:1 — fine for rules, too low for body copy. */
-  --accent: #ff6b4a;
-  --accent-text: #ffa48d;
+  --accent: #4a5c6e;      /* graphic use: rules, markers, focus */
+  --accent-text: #3c4c5c; /* text use: links and figures */
 
-  --pine-bg: #2a4a3d;
-  --pine-rule: #46705c;
+  --callout-bg: #e8eae7;
+  --callout-rule: #c3c8c4;
 
-  --slate-bg: #3e434c;
+  --code-bg: #ebebe7;
 
-  /* primary button — coral fill carries dark ink at 5.8:1 */
-  --btn-bg: #ff6b4a;
-  --btn-fg: #14232a;
+  /* The primary action is ink on paper. No hue — the contrast is the emphasis. */
+  --btn-bg: #26282a;
+  --btn-fg: #fafaf8;
 
   /* type scale — 1.25 minor third, clamped for fluidity */
   --step--1: 0.833rem;
@@ -45,52 +46,52 @@
   --measure: 66ch;
 }
 
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --ground: #edf1f3;
-    --panel: #ffffff;
-    --panel-2: #dde5e9;
-    --rule: #c4d0d6;
-    --rule-soft: #dee5e9;
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #17181a;
+    --panel: #1e2022;
+    --panel-2: #26282b;
+    --rule: #34373b;
+    --rule-soft: #26282b;
 
-    --ink: #16333c;
-    --ink-2: #4a4e58;
-    --ink-3: #626c77;
+    --ink: #ededea;
+    --ink-2: #b4b7bb;
+    --ink-3: #93969b;
 
-    --accent: #e2542f;
-    --accent-text: #b23f22;
+    --accent: #8fa3b5;
+    --accent-text: #a9bccc;
 
-    --pine-bg: #e3ede6;
-    --pine-rule: #2c4c3e;
+    --callout-bg: #212528;
+    --callout-rule: #3a4045;
 
-    --slate-bg: #eef1f3;
+    --code-bg: #202225;
 
-    --btn-bg: #b23f22;
-    --btn-fg: #ffffff;
+    --btn-bg: #ededea;
+    --btn-fg: #17181a;
   }
 }
 
-:root[data-theme="light"] {
-  --ground: #edf1f3;
-  --panel: #ffffff;
-  --panel-2: #dde5e9;
-  --rule: #c4d0d6;
-  --rule-soft: #dee5e9;
+:root[data-theme="dark"] {
+  --ground: #17181a;
+  --panel: #1e2022;
+  --panel-2: #26282b;
+  --rule: #34373b;
+  --rule-soft: #26282b;
 
-  --ink: #16333c;
-  --ink-2: #4a4e58;
-  --ink-3: #626c77;
+  --ink: #ededea;
+  --ink-2: #b4b7bb;
+  --ink-3: #93969b;
 
-  --accent: #e2542f;
-  --accent-text: #b23f22;
+  --accent: #8fa3b5;
+  --accent-text: #a9bccc;
 
-  --pine-bg: #e3ede6;
-  --pine-rule: #2c4c3e;
+  --callout-bg: #212528;
+  --callout-rule: #3a4045;
 
-  --slate-bg: #eef1f3;
+  --code-bg: #202225;
 
-  --btn-bg: #b23f22;
-  --btn-fg: #ffffff;
+  --btn-bg: #ededea;
+  --btn-fg: #17181a;
 }
 
 /* Expose tokens as Tailwind utilities: bg-panel, text-ink-2, border-rule … */
@@ -105,9 +106,9 @@
   --color-ink-3: var(--ink-3);
   --color-accent: var(--accent);
   --color-accent-text: var(--accent-text);
-  --color-pine-bg: var(--pine-bg);
-  --color-pine-rule: var(--pine-rule);
-  --color-slate-bg: var(--slate-bg);
+  --color-callout-bg: var(--callout-bg);
+  --color-callout-rule: var(--callout-rule);
+  --color-code-bg: var(--code-bg);
   --color-btn-bg: var(--btn-bg);
   --color-btn-fg: var(--btn-fg);
 
@@ -179,7 +180,7 @@ a { color: var(--accent-text); text-underline-offset: 2px; }
 .prose li::marker { color: var(--accent); }
 .prose blockquote {
   border-left: 3px solid var(--accent);
-  background: var(--pine-bg);
+  background: var(--callout-bg);
   padding: 1rem 1.25rem;
   color: var(--ink);
 }
@@ -191,7 +192,7 @@ a { color: var(--accent-text); text-underline-offset: 2px; }
   color: var(--ink);
 }
 .prose pre {
-  background: var(--slate-bg);
+  background: var(--code-bg);
   border: 1px solid var(--rule);
   padding: 1.1rem 1.25rem;
   overflow-x: auto;

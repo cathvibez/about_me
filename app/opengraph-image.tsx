@@ -19,7 +19,7 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#1E4D5B",
+          background: "#F2F2EF",
           padding: "72px 80px",
           fontFamily: "sans-serif",
         }}
@@ -30,7 +30,7 @@ export default function OpengraphImage() {
             fontSize: 24,
             letterSpacing: 4,
             textTransform: "uppercase",
-            color: "#FFA48D",
+            color: "#3C4C5C",
           }}
         >
           {site.name}
@@ -42,7 +42,7 @@ export default function OpengraphImage() {
             fontSize: 62,
             lineHeight: 1.15,
             fontWeight: 700,
-            color: "#EAF1F4",
+            color: "#1D1E1E",
             maxWidth: 940,
           }}
         >
@@ -50,8 +50,8 @@ export default function OpengraphImage() {
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
-          <div style={{ display: "flex", width: 96, height: 6, background: "#FF6B4A" }} />
-          <div style={{ display: "flex", fontSize: 24, color: "#C4CFD6" }}>
+          <div style={{ display: "flex", width: 96, height: 3, background: "#4A5C6E" }} />
+          <div style={{ display: "flex", fontSize: 24, color: "#4F5157" }}>
             {site.meta.url.replace(/^https?:\/\//, "")}
           </div>
         </div>

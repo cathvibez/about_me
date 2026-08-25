@@ -24,11 +24,11 @@ fixing it is the whole job — do that before reviewing anything else.
 
 A viewer is in one of three states, and all three must be designed:
 
-- `:root` — the dark Pacific Northwest palette (this site is dark-first)
-- `@media (prefers-color-scheme: light)` guarded by `:root:not([data-theme="dark"])`
-- `:root[data-theme="light"]`
+- `:root` — the light origami paper palette (this site is light-first)
+- `@media (prefers-color-scheme: dark)` guarded by `:root:not([data-theme="light"])`
+- `:root[data-theme="dark"]`
 
-The two light blocks must define identical tokens. Drift between them means the
+The two dark blocks must define identical tokens. Drift between them means the
 OS preference and an explicit toggle disagree — `check-contrast.mjs` detects this,
 and it is a bug that has already happened once in this repo.
 
@@ -44,9 +44,11 @@ renders one theme's text on the other theme's ground.
 - Keyboard focus has a visible state everywhere it can land
 - Digits that line up in columns use `tabular-nums`
 - Spacing comes from flex/grid `gap`, not per-element margins that collapse
-- The accent splits deliberately: `--accent` for rules and borders, `--accent-text`
-  for anything at text size. Pure coral only reaches 3.3:1 on the water ground, so
-  using `--accent` for body-size text is a contrast bug even though it looks right
+- The accent splits deliberately: `--accent` for rules, markers, and focus rings;
+  `--accent-text` for anything at text size. Keep the split even when both clear
+  AA — it is what lets the accent be re-hued without auditing every usage
+- Tokens are named for role, never hue (`--callout-bg`, not `--pine-bg`), so a
+  palette change never forces a rename. Reject any hue-named token you see
 
 ## The one sanctioned exception
 

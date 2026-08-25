@@ -24,20 +24,20 @@ function blockAt(src, anchor) {
 }
 
 /**
- * The three states a viewer can be in. `dark` is the base `:root`; the two
- * light blocks must stay in sync with each other or the toggle disagrees
- * with the OS preference.
+ * The three states a viewer can be in. This design is light-first, so `:root`
+ * carries the paper palette and the two dark blocks must stay in sync with
+ * each other — otherwise an explicit toggle disagrees with the OS preference.
  */
 export function readThemes() {
   const src = fs.readFileSync(CSS, "utf8");
-  const dark = blockAt(src, ":root {");
-  const lightMedia = blockAt(src, ':root:not([data-theme="dark"])');
-  const lightStamp = blockAt(src, ':root[data-theme="light"]');
+  const base = blockAt(src, ":root {");
+  const darkMedia = blockAt(src, ':root:not([data-theme="light"])');
+  const darkStamp = blockAt(src, ':root[data-theme="dark"]');
   return {
-    dark,
-    lightSystem: { ...dark, ...lightMedia },
-    lightExplicit: { ...dark, ...lightStamp },
-    raw: { dark, lightMedia, lightStamp },
+    light: base,
+    darkSystem: { ...base, ...darkMedia },
+    darkExplicit: { ...base, ...darkStamp },
+    raw: { overrideA: darkMedia, overrideB: darkStamp, overrideLabel: "dark" },
   };
 }
 

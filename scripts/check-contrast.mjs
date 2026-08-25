@@ -26,18 +26,18 @@ const PAIRS = [
   ["accent-text", "ground", AA_TEXT, "links and stats on the page"],
   ["accent-text", "panel", AA_TEXT, "links and stats in a card"],
   ["btn-fg", "btn-bg", AA_TEXT, "the primary button label"],
-  ["ink", "pine-bg", AA_TEXT, "text in a callout"],
-  ["ink-2", "slate-bg", AA_TEXT, "code blocks"],
-  ["accent", "ground", AA_GRAPHIC, "accent rules and borders"],
+  ["ink", "callout-bg", AA_TEXT, "text in a callout"],
+  ["ink-2", "code-bg", AA_TEXT, "code blocks"],
+  ["accent", "ground", AA_GRAPHIC, "accent rules, markers, focus ring"],
   ["rule", "ground", DECORATIVE, "hairline dividers (decorative)"],
   ["accent", "panel", AA_GRAPHIC, "card hover border"],
 ];
 
-const THEMES = ["dark", "lightSystem", "lightExplicit"];
+const THEMES = ["light", "darkSystem", "darkExplicit"];
 const LABEL = {
-  dark: "dark",
-  lightSystem: "light (system preference)",
-  lightExplicit: "light (explicit toggle)",
+  light: "light — paper (base)",
+  darkSystem: "dark (system preference)",
+  darkExplicit: "dark (explicit toggle)",
 };
 
 const themes = readThemes();
@@ -68,15 +68,15 @@ for (const key of THEMES) {
   }
 }
 
-// The two light blocks must define the same tokens with the same values.
-const { lightMedia, lightStamp } = themes.raw;
-const keys = new Set([...Object.keys(lightMedia), ...Object.keys(lightStamp)]);
-const drift = [...keys].filter((k) => lightMedia[k] !== lightStamp[k]);
+// The two override blocks must define the same tokens with the same values.
+const { overrideA, overrideB, overrideLabel } = themes.raw;
+const keys = new Set([...Object.keys(overrideA), ...Object.keys(overrideB)]);
+const drift = [...keys].filter((k) => overrideA[k] !== overrideB[k]);
 if (drift.length) {
   console.error(
-    `\nFAIL  light theme drift — these differ between the media query and the ` +
-      `[data-theme="light"] block, so the toggle and the OS preference disagree:\n  ` +
-      drift.map((k) => `--${k}: ${lightMedia[k] ?? "(unset)"} vs ${lightStamp[k] ?? "(unset)"}`).join("\n  "),
+    `\nFAIL  ${overrideLabel} theme drift — these differ between the media query ` +
+      `and the [data-theme] block, so the toggle and the OS preference disagree:\n  ` +
+      drift.map((k) => `--${k}: ${overrideA[k] ?? "(unset)"} vs ${overrideB[k] ?? "(unset)"}`).join("\n  "),
   );
   failures += drift.length;
 }

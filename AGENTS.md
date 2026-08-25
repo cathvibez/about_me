@@ -49,12 +49,14 @@ before a production deploy.
   `app/work/[slug]/page.tsx`. Passing `options` as a JSX prop to `<MDXRemote/>`
   silently drops the plugin list on next-mdx-remote v6, which kills `remark-gfm`
   and renders tables as literal pipe characters. Do not "simplify" this back.
-- **Three theme states, not two:** `:root` (dark), the `prefers-color-scheme`
-  media block, and `[data-theme="light"]`. The two light blocks must stay
-  identical; `check-contrast.mjs` fails on drift.
-- **The accent splits in two:** `--accent` (`#FF6B4A`) for rules and borders,
-  `--accent-text` (`#FFA48D`) for anything at text size. Pure coral is 3.3:1 on
-  the Sound Water ground — using it for body text is a contrast bug.
+- **Three theme states, not two:** `:root` (light paper, the base), the
+  `prefers-color-scheme: dark` media block, and `[data-theme="dark"]`. The two
+  dark blocks must stay identical; `check-contrast.mjs` fails on drift.
+- **The accent splits in two:** `--accent` for rules, markers, and focus rings;
+  `--accent-text` for anything at text size. Keep the split even when both clear
+  AA — it is what lets the accent be re-hued later without auditing every use.
+- **Tokens are named for role, never hue** (`--callout-bg`, not `--pine-bg`).
+  A palette change should never force a rename.
 
 ## Content standards
 

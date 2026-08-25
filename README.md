@@ -41,14 +41,19 @@ without deleting the file.
 
 ## Palette
 
-Pacific Northwest. Sound Water `#1E4D5B` ground, Pacific Mist `#D0D7DE` text,
-Neon Sunset `#FF6B4A` accent, Evergreen Pine `#2C4C3E` and Urban Slate `#4A4E58`
-for callouts and code. Dark-first; light is a deliberate role swap, and both
-themes plus the unstamped system default are defined at token level.
+Origami. A paper ground, creases instead of borders, and hierarchy built from
+folded tonal steps rather than hue. Colour is nearly absent by design: the one
+accent is a muted slate (`#4A5C6E`) that reads as ink held to the light, so
+nothing competes with the writing. The primary button is ink on paper, no hue
+at all.
 
-Coral splits into two tokens on purpose: `--accent` (`#FF6B4A`) for rules and
-borders, `--accent-text` (`#FFA48D`) for anything at text size, because the pure
-coral only reaches 3.3:1 on the water ground.
+Light-first — paper is the base state, dark is the deliberate swap. All three
+viewer states (base, `prefers-color-scheme: dark`, and `[data-theme="dark"]`)
+are defined at token level, and `check-contrast.mjs` fails if the two dark
+blocks drift apart.
+
+`--accent` is for rules, markers, and focus rings; `--accent-text` for anything
+at text size. Both clear AA comfortably in both themes.
 
 ## Note on MDX
 
