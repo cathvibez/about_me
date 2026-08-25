@@ -34,6 +34,11 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: { card: "summary_large_image" },
+  // Belt and braces alongside app/robots.ts: while the content is still
+  // placeholder, keep the page out of search results entirely.
+  robots: site.meta.url.includes("example.com")
+    ? { index: false, follow: false }
+    : { index: true, follow: true },
 };
 
 export default function RootLayout({
